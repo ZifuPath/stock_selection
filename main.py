@@ -18,7 +18,7 @@ def get_future_scrips():
     return df2
 
 def get_client():
-    #GET PYPAISA OBJECT  return py5paisa object
+    #GET PY5PAISA OBJECT  return py5paisa object
     cred = ast.literal_eval(os.getenv('cred'))
     email = os.getenv('email')
     dob = os.getenv('dob')
@@ -59,7 +59,7 @@ def telegram_bot_sendtext(bot_message:str):
 def get_pivots_next_day():
     # get CPR and support resistance for next day
     client = get_client()
-    t1 = datetime.datetime.today().strftime('%Y-%m-%d')
+    t1 = (datetime.datetime.today() - datetime.timedelta(days=1)).strftime('%Y-%m-%d')
     t2 = (datetime.datetime.today() - datetime.timedelta(days=10)).strftime('%Y-%m-%d')
     df = get_future_scrips()
     adict = df.to_dict('records')
