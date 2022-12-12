@@ -13,7 +13,7 @@ def get_future_scrips():
     df = pd.read_csv('dataset/scripmaster-csv-format.csv',usecols=['Exch', 'ExchType', 'Scripcode', 'Name', 'Series', 'Expiry',  'Root'])
     df1 = df[(df.Exch=='N') & (df.ExchType=='D')]
     roots = list(df1.Root.unique())
-    df2 = df[(df.Exch=='N') & (df.Series=='EQ') & (df.Root.isin(roots))]
+    df2 = df[(df.Exch == 'N') & (df.Series == 'EQ') & (df.Root.isin(roots))]
     df2 = df2[['Exch', 'ExchType', 'Scripcode','Root']]
     return df2
 
@@ -78,6 +78,7 @@ def get_pivots_next_day():
     df = pd.concat(alist,ignore_index=True)
     df = df.reset_index()
     df.to_csv('dataset/pivots.csv',index=False)
+
 
 def buy_sell_signals():
     client = get_client()
